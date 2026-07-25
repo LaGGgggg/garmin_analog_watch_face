@@ -23,7 +23,7 @@ only one last update timestamp will be fetched instead of the whole data)
 
 To enable this feature, you need to use [external API](https://github.com/LaGGgggg/garmin_watch_face_api)
 (due to Garmin Connect API limitations watch face cannot get calendar events directly from
-user's phone).
+user's phone). Also you need to specify API url and access token in the settings of the watch face.
 
 #### Thanks
 - Inspired by [Analog Gradient Watch Face](https://apps.garmin.com/apps/36aaae1f-a003-4e3f-bed6-af194836f0f9)

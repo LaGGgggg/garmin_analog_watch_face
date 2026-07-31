@@ -5,6 +5,7 @@ import Toybox.System;
 import Toybox.Background;
 
 
+(:background)
 class CalendarBackgroundService extends System.ServiceDelegate {
 
     function getApiData() as Array<String> {
@@ -115,6 +116,7 @@ class CalendarBackgroundService extends System.ServiceDelegate {
 }
 
 
+(:background)
 class analogApp extends Application.AppBase {
 
     function initialize() {

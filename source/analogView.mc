@@ -13,7 +13,6 @@ const VIEW_CIRCLE_PADDING = 15;
 const CENTER_INNER_RADIUS = 3;
 const CENTER_OUTER_RADIUS = 7;
 const TICK_LENGTH = 5;
-const CIRCLE_HAND_CIRCLE_OFFSET = 10;
 const ELLIPSE_HAND_ELLIPSE_OFFSET = 10;
 
 const SECOND_HAND_LENGTH_PERCENT = 0.95;
@@ -23,9 +22,6 @@ const HOUR_HAND_LENGTH_PERCENT = 0.75;
 const SECOND_HAND_STROKE = 1;
 const MINUTE_HAND_STROKE = 2;
 const HOUR_HAND_STROKE = 2;
-
-const MINUTE_HAND_CIRCLE_RADIUS = 3;
-const HOUR_HAND_CIRCLE_RADIUS = 5;
 
 const MINUTE_HAND_ELLIPSE_MAJOR_RADIUS = 12;
 const MINUTE_HAND_ELLIPSE_MINOR_RADIUS = 4;
@@ -213,48 +209,6 @@ class analogView extends WatchUi.WatchFace {
       dc.drawLine(centerXWithOffset, centerYWithOffset, x2, y2);
     }
 
-    function drawCircleHand(
-        dc as Dc,
-        divisionsNumber as Number,
-        currentDivision,  // Number or Float
-        length as Number,
-        radius as Number,
-        stroke as Number,
-        isFill as Boolean
-    ) as Void {
-
-      var angle = Math.toRadians(360 / divisionsNumber * currentDivision) - Math.PI / 2;
-
-      var cos = Math.cos(angle);
-      var sin = Math.sin(angle);
-      var innerLineLength = length - CIRCLE_HAND_CIRCLE_OFFSET - 2 * radius;
-
-      var xInner = self.centerX + Math.round(cos * innerLineLength);
-      var yInner = self.centerY + Math.round(sin * innerLineLength);
-
-      var xOuter = self.centerX + Math.round(cos * length);
-      var yOuter = self.centerY + Math.round(sin * length);
-
-      var circleOffsetX = Math.round(cos * radius);
-      var circleOffsetY = Math.round(sin * radius);
-
-      var centerXWithOffset = self.centerX + Math.round(cos * CENTER_OUTER_RADIUS);
-      var centerYWithOffset = self.centerY + Math.round(sin * CENTER_OUTER_RADIUS);
-
-      dc.setPenWidth(stroke);
-
-      dc.drawLine(centerXWithOffset, centerYWithOffset, xInner, yInner);
-      dc.drawLine(xInner + 2 * circleOffsetX, yInner + 2 * circleOffsetY, xOuter, yOuter);
-
-      dc.setPenWidth(stroke - 1);
-
-      if (isFill) {
-          dc.fillCircle(xInner + circleOffsetX, yInner + circleOffsetY, radius);
-      } else {
-          dc.drawCircle(xInner + circleOffsetX, yInner + circleOffsetY, radius);
-      }
-    }
-
     function drawEllipseHand(
         dc as Dc,
         divisionsNumber as Number,
@@ -286,9 +240,6 @@ class analogView extends WatchUi.WatchFace {
 
       var xOuter = self.centerX + Math.round(cos * length);
       var yOuter = self.centerY + Math.round(sin * length);
-
-      var ellipseOffsetX = Math.round(majorRadius * cos);
-      var ellipseOffsetY = Math.round(majorRadius * sin);
 
       var centerXWithOffset = self.centerX + Math.round(cos * CENTER_OUTER_RADIUS);
       var centerYWithOffset = self.centerY + Math.round(sin * CENTER_OUTER_RADIUS);

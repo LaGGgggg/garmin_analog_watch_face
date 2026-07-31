@@ -8,6 +8,10 @@ import Toybox.Background;
 (:background)
 class CalendarBackgroundService extends System.ServiceDelegate {
 
+    function initialize() {
+        System.ServiceDelegate.initialize();
+    }
+
     function getApiData() as Array<String> {
 
         var baseApiUrl = Application.Properties.getValue("CalendarApiBaseUrl") as String;
